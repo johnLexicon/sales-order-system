@@ -4,8 +4,8 @@ export class Order {
   #id;
   #createDate;
   #status;
-  #orderDetails;
-  #payment;
+  #orderDetails = [];
+  #payments = [];
 
   get id() {
     return this.#id;
@@ -28,17 +28,20 @@ export class Order {
   }
 
   get payment() {
-    return this.#payment;
+    return this.#payments.slice();
   }
 
   constructor() {
     this.#id = Date.now();
     this.#createDate = new Date();
     this.status = orderStatus.CREATE;
-    this.#orderDetails = [];
   }
 
   addOrderDetail(orderDetail) {
     this.#orderDetails.push(orderDetail);
+  }
+
+  addPayment(payment) {
+    this.#payments.push(payment);
   }
 }
